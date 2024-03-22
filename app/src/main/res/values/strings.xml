@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CryptoStadisticsMS</string>
+    <string name="channel_name">Marcos_Bot</string>
+    <string name="channel_description">Prueba de funcionamiento</string>
+    <string name="notification_title">Titulo Notificacion</string>
+    <string name="notification_message">Mensaje de la notificacion</string>
+</resources>
