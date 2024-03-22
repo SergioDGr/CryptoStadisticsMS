@@ -1,29 +1,45 @@
 import ccxt
 import time
 import os
+import requests
 
 api_key = os.getenv('API_KEY')
 api_secret = os.getenv('API_SECRET')
 
-exchange = ccxt.binance({
-    'apiKey': api_key,
-    'secret': api_secret,
-})
-
 def get_price(symbol):
     try:
-        ticker = exchange.fetch_ticker(symbol)
-        return ticker['last']
+        url = f"https://graphql.bitquery.io/chain-gateway/mainnet"
+        query = """
+        {
+            ethereum(network: ethereum) {
+                dexTrades(options: {limit: 1, asc: "timeInterval.minute"}, date: {since: "2022-01-01"}, baseCurrency: {is: "%s"}) {
+                    timeInterval {
+                        minute(count: 15)
+                    }
+                    baseCurrency {
+                        symbol
+                    }
+                    quoteCurrency {
+                        symbol
+                    }
+                    baseAmount
+                    quoteAmount
+                    trades: count
+                    quotePrice
+                    maximum_price: quotePrice(calculate: maximum)
+                    minimum_price: quotePrice(calculate: minimum)
+                    open_price: minimum(of: block, get: quote_price)
+                    close_price: maximum(of: block, get: quote_price)
+                }
+            }
+        }
+        """ % symbol
+        response = requests.post(url, json={'query': query})
+        data = response.json()
+        price = data['data']['ethereum']['dexTrades'][0]['close_price']
+        return price
     except Exception as e:
-        print(f"Se produjo un error al obtener el ticker: {e}")
-        return None
-
-def create_order(symbol, type, side, amount, price=None):
-    try:
-        order = exchange.create_order(symbol, type, side, amount, price)
-        return order
-    except Exception as e:
-        print(f"Se produjo un error al crear la orden: {e}")
+        print(f"Se produjo un error al obtener el precio: {e}")
         return None
 
 def calculate_sma(data, window):
@@ -39,7 +55,7 @@ def notify_user(message):
     print(f"Notificar al usuario: {message}")
 
 def trading_bot():
-    symbol = 'BTC/USDT'
+    symbol = 'ETH/USDT'  # Cambia el símbolo según las convenciones de Bitquery
     sma_window = 20
     trade_amount = 0.001
     data = []
