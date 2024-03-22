@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.chaquo.python")
 }
 
 android {
@@ -15,6 +16,11 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            // On Apple silicon, you can omit x86_64.
+            abiFilters += listOf("arm64-v8a", "x86_64")
+        }
     }
 
     buildTypes {
@@ -26,6 +32,13 @@ android {
             )
         }
     }
+
+    flavorDimensions += "pyVersion"
+    productFlavors {
+        create("py310") { dimension = "pyVersion" }
+        create("py311") { dimension = "pyVersion" }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -34,6 +47,23 @@ android {
         jvmTarget = "1.8"
     }
 }
+
+chaquopy {
+    defaultConfig {
+        buildPython("/usr/lib/python3.10")
+        buildPython("/usr/lib/python3.11")
+    }
+    productFlavors {
+        getByName("py310") { version = "3.10" }
+        getByName("py311") { version = "3.11" }
+    }
+    sourceSets {
+        getByName("main") {
+            srcDir("src/main/bot")
+        }
+    }
+}
+
 
 dependencies {
 
