@@ -44,16 +44,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         val py = Python.getInstance()
-        val module = py.getModule("Prueba2")
+        val module = py.getModule("Prueba")
 
-        val num = module["number"]?.toInt()
-        println("The value of num is $num")
+        //val num = module["number"]?.toInt()
+        //println("The value of num is $num")
 
-        val text = module["text"]?.toString()
-        println("The value of text is $text")
+        //val text = module["text"]?.toString()
+        //println("The value of text is $text")
 
-        val fact = module["factorial"]
-        val a = fact?.call(5)
+        val fact = module["get_price"]
+        val a = fact?.call("Bitcoin")
         println("The value of is $a")
 
         // En tu fragment o actividad

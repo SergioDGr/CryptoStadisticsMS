@@ -1,14 +1,12 @@
-import ccxt
 import time
-import os
-import requests
+import http.client
+import json
 
-api_key = os.getenv('API_KEY')
-api_secret = os.getenv('API_SECRET')
+api_key = "BQYhfZlL6HQUffO4vOhyj6MfNJEwISrd"
 
 def get_price(symbol):
     try:
-        url = f"https://graphql.bitquery.io/chain-gateway/mainnet"
+        conn = http.client.HTTPSConnection("graphql.bitquery.io")
         query = """
         {
             ethereum(network: ethereum) {
@@ -34,9 +32,11 @@ def get_price(symbol):
             }
         }
         """ % symbol
-        response = requests.post(url, json={'query': query})
-        data = response.json()
-        price = data['data']['ethereum']['dexTrades'][0]['close_price']
+        headers = { 'Content-Type': 'application/json' }
+        conn.request("POST", "/chain-gateway/mainnet", json.dumps({'query': query}), headers)
+        res = conn.getresponse()
+        data = res.read()
+        price = json.loads(data)['data']['ethereum']['dexTrades'][0]['close_price']
         return price
     except Exception as e:
         print(f"Se produjo un error al obtener el precio: {e}")
@@ -49,13 +49,10 @@ def calculate_sma(data, window):
         return None
 
 def notify_user(message):
-    # Lógica para enviar notificaciones al usuario en Kotlin
-    # Puedes implementar esto en tu aplicación móvil
-    # Por ejemplo, usando Firebase Cloud Messaging (FCM)
     print(f"Notificar al usuario: {message}")
 
 def trading_bot():
-    symbol = 'ETH/USDT'  # Cambia el símbolo según las convenciones de Bitquery
+    symbol = 'ETH/USDT'
     sma_window = 20
     trade_amount = 0.001
     data = []
@@ -77,4 +74,3 @@ def trading_bot():
 
         time.sleep(1)
 
-trading_bot()
