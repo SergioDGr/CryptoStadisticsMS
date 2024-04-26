@@ -4,43 +4,49 @@ import json
 
 api_key = "BQYhfZlL6HQUffO4vOhyj6MfNJEwISrd"
 
-def get_price(symbol):
+def get_price():
     try:
-        conn = http.client.HTTPSConnection("graphql.bitquery.io")
         query = """
         {
-            ethereum(network: ethereum) {
-                dexTrades(options: {limit: 1, asc: "timeInterval.minute"}, date: {since: "2022-01-01"}, baseCurrency: {is: "%s"}) {
-                    timeInterval {
-                        minute(count: 15)
-                    }
-                    baseCurrency {
-                        symbol
-                    }
-                    quoteCurrency {
-                        symbol
-                    }
-                    baseAmount
-                    quoteAmount
-                    trades: count
-                    quotePrice
-                    maximum_price: quotePrice(calculate: maximum)
-                    minimum_price: quotePrice(calculate: minimum)
-                    open_price: minimum(of: block, get: quote_price)
-                    close_price: maximum(of: block, get: quote_price)
+          ethereum(network: bsc) {
+            dexTrades(
+              baseCurrency: { is: "0x2170ed0880ac9a755fd29b2688956bd959f933f8" }
+              quoteCurrency: { is: "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d" }
+              options: { desc: ["block.height", "transaction.index"], limit: 1 }
+              date: { since: "2024-04-26T15:00:00.000Z" }
+            ) {
+              block {
+                height
+                timestamp {
+                  time(format: "%Y-%m-%d %H:%M:%S")
                 }
+              }
+              transaction {
+                index
+              }
+              quotePrice
             }
+          }
         }
-        """ % symbol
-        headers = { 'Content-Type': 'application/json' }
-        conn.request("POST", "/chain-gateway/mainnet", json.dumps({'query': query}), headers)
-        res = conn.getresponse()
-        data = res.read()
-        price = json.loads(data)['data']['ethereum']['dexTrades'][0]['close_price']
-        return price
+        """
+
+        # Configura tus encabezados (reemplaza 'API-KEY' con tu clave de API)
+        headers = {'Content-Type': 'application/json', "X-API-KEY": api_key}
+
+        # Realiza la solicitud POST a la API de Bitquery
+        conn = http.client.HTTPSConnection("graphql.bitquery.io")
+        conn.request("POST", "/", json.dumps({"query": query}), headers)
+        response = conn.getresponse()
+
+        if response.status == 200:
+            data = json.loads(response.read())
+            quote_price = data["data"]["ethereum"]["dexTrades"][0]["quotePrice"]
+            print(f"El quotePrice es: {quote_price}")
+        else:
+            print("Ocurrió algo inesperado al hacer la solicitud.")
     except Exception as e:
         print(f"Se produjo un error al obtener el precio: {e}")
-        return None
+
 
 def calculate_sma(data, window):
     if len(data) >= window:

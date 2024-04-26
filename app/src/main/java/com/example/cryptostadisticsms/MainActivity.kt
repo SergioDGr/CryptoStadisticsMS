@@ -53,8 +53,7 @@ class MainActivity : AppCompatActivity() {
         //println("The value of text is $text")
 
         val fact = module["get_price"]
-        val a = fact?.call("Bitcoin")
-        println("The value of is $a")
+        fact?.call()
 
         // En tu fragment o actividad
         val permissionLauncher = registerForActivityResult(
