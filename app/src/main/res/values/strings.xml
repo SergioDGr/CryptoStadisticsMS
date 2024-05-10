@@ -4,4 +4,6 @@
     <string name="channel_description">Prueba de funcionamiento</string>
     <string name="notification_title">Titulo Notificacion</string>
     <string name="notification_message">Mensaje de la notificacion</string>
+    <string name="cryptostadisticsms">CryptoStadisticsMS</string>
+    <string name="authors">Created by Marcos Vazquez and Sergio Groppa</string>
 </resources>

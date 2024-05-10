@@ -6,6 +6,7 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     private val channelName = "channelName"
 
     private val notificationId = 0
+
 
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +70,8 @@ class MainActivity : AppCompatActivity() {
             permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
 
+        intent = Intent(this@MainActivity, StartupActivity::class.java)
+        startActivity(intent)
 
         val btnNewNotification = findViewById<Button>(R.id.btn_newNotification)
 
