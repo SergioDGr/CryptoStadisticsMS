@@ -1,3 +1,4 @@
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -35,6 +36,7 @@ android {
 
     flavorDimensions += "pyVersion"
     productFlavors {
+        create("py38") { dimension = "pyVersion" }
         create("py310") { dimension = "pyVersion" }
         create("py311") { dimension = "pyVersion" }
     }
@@ -50,10 +52,12 @@ android {
 
 chaquopy {
     defaultConfig {
+        buildPython("/usr/lib/python3.8")
         buildPython("/usr/lib/python3.10")
         buildPython("/usr/lib/python3.11")
     }
     productFlavors {
+        getByName("py310") { version = "3.8" }
         getByName("py310") { version = "3.10" }
         getByName("py311") { version = "3.11" }
     }
@@ -66,7 +70,6 @@ chaquopy {
 
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -75,4 +78,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }

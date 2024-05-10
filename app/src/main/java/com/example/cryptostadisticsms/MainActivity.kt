@@ -12,6 +12,7 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.widget.Button
+import android.widget.RelativeLayout
 
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +30,11 @@ class MainActivity : AppCompatActivity() {
 
     private val notificationId = 0
 
+    private var lstCryptos: ArrayList<Crypto>? = ArrayList()
+
+    private lateinit var rlBitcoin: RelativeLayout;
+    private lateinit var rlEtherium: RelativeLayout;
+    private lateinit var rlsolana: RelativeLayout;
 
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,12 +53,6 @@ class MainActivity : AppCompatActivity() {
 
         val py = Python.getInstance()
         val module = py.getModule("Prueba")
-
-        //val num = module["number"]?.toInt()
-        //println("The value of num is $num")
-
-        //val text = module["text"]?.toString()
-        //println("The value of text is $text")
 
         val fact = module["get_price"]
         fact?.call()
@@ -74,6 +74,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
 
         val btnNewNotification = findViewById<Button>(R.id.btn_newNotification)
+        rlBitcoin = findViewById(R.id.rlBitcoin);
+
+        loadCryptos(py)
 
         createNotificationChannel()
 
@@ -90,6 +93,19 @@ class MainActivity : AppCompatActivity() {
             notificationManager.notify(notificationId, notification)
         }
 
+        rlBitcoin.setOnClickListener {
+
+            val bitcoin = lstCryptos?.get(0)
+
+            intent = Intent(this@MainActivity, CryptoActivity::class.java)
+            intent.putExtra("Bitcoin", bitcoin)
+            startActivity(intent)
+        }
+
+    }
+
+    private fun loadCryptos(python: Python) {
+        lstCryptos?.add(Crypto("Bitcoin", 1.2))
     }
 
     private fun createNotificationChannel() {

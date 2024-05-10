@@ -6,4 +6,7 @@
     <string name="notification_message">Mensaje de la notificacion</string>
     <string name="cryptostadisticsms">CryptoStadisticsMS</string>
     <string name="authors">Created by Marcos Vazquez and Sergio Groppa</string>
+    <string name="bitcoin">Bitcoin</string>
+    <string name="ethereum">Ethereum</string>
+    <string name="solana">Solana</string>
 </resources>
