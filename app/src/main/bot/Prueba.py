@@ -41,11 +41,14 @@ def get_price():
         if response.status == 200:
             data = json.loads(response.read())
             quote_price = data["data"]["ethereum"]["dexTrades"][0]["quotePrice"]
-            print(f"El quotePrice es: {quote_price}")
+            print(f"El precio de la cripto es: {quote_price}")
+            return quote_price
         else:
             print("Ocurrió algo inesperado al hacer la solicitud.")
+            return None
     except Exception as e:
         print(f"Se produjo un error al obtener el precio: {e}")
+        return None
 
 
 def calculate_sma(data, window):
@@ -62,9 +65,8 @@ def trading_bot():
     sma_window = 20
     trade_amount = 0.001
     data = []
-
-    while True:
-        price = get_price(symbol)
+    for i in range(1, 21):
+        price = get_price()
         if price is None:
             continue
         data.append(price)
@@ -77,6 +79,5 @@ def trading_bot():
                 notify_user("¡Hora de comprar!")
             elif price < sma:
                 notify_user("¡Hora de vender!")
-
-        time.sleep(1)
+        time.sleep(60)
 
