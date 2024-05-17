@@ -5,27 +5,21 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompa
+import androidx.core.view.WindowInsetsCompat
+import com.example.cryptostadisticsms.databinding.ActivityCryptoBinding
+import com.example.cryptostadisticsms.databinding.ActivityMainBinding
 
 class CryptoActivity : AppCompatActivity() {
 
-    private lateinit var tvCrypto: TextView
+    private lateinit var binding: ActivityCryptoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_crypto)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding = ActivityCryptoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        tvCrypto = findViewById(R.id.tvCrypto)
-
-        val crypto = intent.getSerializableExtra("Bitcoin") as Crypto
-        tvCrypto.text = crypto.name
-
+        val crypto = intent.getSerializableExtra("Bitcoin") as CryptoItem
+        binding.tvCrypto.text = crypto.name
 
     }
 

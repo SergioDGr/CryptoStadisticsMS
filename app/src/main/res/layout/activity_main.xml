@@ -14,116 +14,46 @@
         android:padding="20dp">
 
         <ImageView
+            android:id="@+id/ivNavBar"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/twotone_apps_24"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            tools:ignore="ContentDescription" />
+
+        <EditText
+            android:id="@+id/etBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
+            android:layout_marginHorizontal="60dp"
+            android:textSize="14sp"
+            android:maxLength="25"
+            android:maxLines="1"
+            android:padding="5dp"
+            android:autofillHints=""
+            android:textCursorDrawable="@null"
+            android:layout_centerVertical="true"
+            tools:ignore="LabelFor,TextFields" />
 
         <ImageView
+            android:id="@+id/ivAddCrypro"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/baseline_add_24"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:padding="5dp"/>
+            android:padding="5dp"
+            tools:ignore="ContentDescription" />
 
     </RelativeLayout>
 
-    <LinearLayout
+    <GridView
+        android:id="@+id/gvCryptos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:id="@+id/rlBitcoin"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/card_1"
-                android:elevation="4dp"
-                android:layout_margin="10dp">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/bitcoin"
-                    android:layout_centerInParent="true" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/bitcoin"
-                android:gravity="center_horizontal" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:id="@+id/rlEtherium"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/card_2"
-                android:elevation="4dp"
-                android:layout_margin="10dp">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ethereum"
-                    android:layout_centerInParent="true" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ethereum"
-                android:gravity="center_horizontal" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:id="@+id/rlSolana"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/card_3"
-                android:elevation="4dp"
-                android:layout_margin="10dp">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/solana"
-                    android:layout_centerInParent="true" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/solana"
-                android:gravity="center_horizontal" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
+        tools:listitem="@layout/crypto_list_item"
+        android:numColumns="3"/>
 
     <Button
         android:id="@+id/btn_newNotification"

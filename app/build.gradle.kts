@@ -9,6 +9,10 @@ android {
     namespace = "com.example.cryptostadisticsms"
     compileSdk = 34
 
+    buildFeatures{
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.cryptostadisticsms"
         minSdk = 24
@@ -39,6 +43,7 @@ android {
         create("py38") { dimension = "pyVersion" }
         create("py310") { dimension = "pyVersion" }
         create("py311") { dimension = "pyVersion" }
+        create("py39") { dimension = "pyVersion" }
     }
 
     compileOptions {
@@ -55,11 +60,13 @@ chaquopy {
         buildPython("/usr/lib/python3.8")
         buildPython("/usr/lib/python3.10")
         buildPython("/usr/lib/python3.11")
+        buildPython("C:\\Users\\sergio\\AppData\\Local\\Programs\\Python\\Python39")
     }
     productFlavors {
         getByName("py310") { version = "3.8" }
         getByName("py310") { version = "3.10" }
         getByName("py311") { version = "3.11" }
+        getByName("py39") { version = "3.9" }
     }
     sourceSets {
         getByName("main") {
