@@ -12,7 +12,7 @@ def get_price():
             dexTrades(
               baseCurrency: { is: "0x2170ed0880ac9a755fd29b2688956bd959f933f8" }
               quoteCurrency: { is: "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d" }
-              options: { desc: ["block.height", "transaction.index"], limit: 1 }
+              options: { desc: ["block.height", "transaction.index"], limit: 20 }
               date: { since: "2024-04-26T15:00:00.000Z" }
             ) {
               block {
@@ -40,9 +40,14 @@ def get_price():
 
         if response.status == 200:
             data = json.loads(response.read())
-            quote_price = data["data"]["ethereum"]["dexTrades"][0]["quotePrice"]
-            print(f"El precio de la cripto es: {quote_price}")
-            return quote_price
+            quote_price20 = []
+            for i in range(0, 20):
+                quote_price = data["data"]["ethereum"]["dexTrades"][i]["quotePrice"]
+                date= data["data"]["ethereum"]["dexTrades"][i]["block"]["timestamp"]["time"]
+                quote_price20.append(quote_price)
+                print(f"El precio de la cripto es: {quote_price}")
+                print(f"El time de la cripto es: {date}")
+            return quote_price20
         else:
             print("Ocurrió algo inesperado al hacer la solicitud.")
             return None
@@ -65,19 +70,16 @@ def trading_bot():
     sma_window = 20
     trade_amount = 0.001
     data = []
-    for i in range(1, 21):
-        price = get_price()
-        if price is None:
-            continue
-        data.append(price)
-        sma = calculate_sma(data, sma_window)
+    data = get_price()
+    price = data[0]
+    data.append(price)
+    sma = calculate_sma(data, sma_window)
 
-        if sma is not None:
-            print(f'Último precio: {price}, SMA: {sma:.2f}')
+    if sma is not None:
+        print(f'Último precio: {price}, SMA: {sma:.2f}')
 
-            if price > sma:
-                notify_user("¡Hora de comprar!")
-            elif price < sma:
-                notify_user("¡Hora de vender!")
-        time.sleep(60)
+        if price > sma:
+            notify_user("¡Hora de comprar!")
+        elif price < sma:
+            notify_user("¡Hora de vender!")
 

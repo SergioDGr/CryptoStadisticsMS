@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         val py = Python.getInstance()
         val module = py.getModule("Prueba")
 
-        val fact = module["get_price"]
+        val fact = module["trading_bot"]
         fact?.call()
 
         // En tu fragment o actividad
@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
 
         val notification: Notification = NotificationCompat.Builder(this, CHANNEl_ID).also {
             it.setContentTitle("Titulo de notifiacion")
-            it.setContentText("Este es el contenido de la notificacion")
+            it.setContentText("Este es el contenido de la notificación")
             it.setSmallIcon(R.drawable.ic_message)
             it.setPriority(NotificationCompat.PRIORITY_HIGH)
         }.build()
@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
         binding.ivAddCrypro.setOnClickListener{
             val strSearch =binding.etBuscar.text.toString()
             if(strSearch.isEmpty()) {
-                Toast.makeText(this, "No se a pasado ninguna moneda",
+                Toast.makeText(this, "No se ha pasado ninguna moneda",
                     Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -131,7 +131,7 @@ class MainActivity : AppCompatActivity() {
                 lstCryptoItems.add( CryptoItem(strSearch, 0, R.drawable.card_3))
                 adapter.notifyDataSetChanged()
             }else{
-                Toast.makeText(this, "No se a encontrado la cryptomoneda",
+                Toast.makeText(this, "No se ha encontrado la cryptomoneda",
                     Toast.LENGTH_SHORT).show()
             }
         }
