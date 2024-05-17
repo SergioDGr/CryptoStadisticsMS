@@ -16,6 +16,9 @@
         android:theme="@style/Theme.CryptoStadisticsMS"
         tools:targetApi="31">
         <activity
+            android:name=".CryptoActivity"
+            android:exported="false" />
+        <activity
             android:name=".StartupActivity"
             android:exported="false" />
         <activity
