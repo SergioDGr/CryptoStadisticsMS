@@ -30,22 +30,15 @@
             android:text="@string/cryptostadisticsms"
             android:textSize="25sp"
             android:fontFamily="sans-serif-smallcaps"
-            tools:ignore="MissingConstraints"
-            />
+            tools:ignore="MissingConstraints" />
 
-        <Button
-            android:id="@+id/btnInit"
+        <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            style="?attr/materialButtonOutlinedStyle"
-            android:text="Iniciar"
-            app:strokeColor="@color/black"
-            app:cornerRadius="10dp" />
+            android:layout_marginTop="35dp"
+            android:indeterminateTint="@color/black" />
 
     </LinearLayout>
-
-
 
     <TextView
         android:id="@+id/tvCreator"

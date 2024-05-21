@@ -1,5 +1,6 @@
 package com.example.cryptostadisticsms
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.animation.Animation
@@ -19,7 +20,6 @@ class StartupActivity : AppCompatActivity() {
     private lateinit var ivImage: ImageView
     private lateinit var tvTitle: TextView
     private lateinit var tvCreators: TextView
-    private lateinit var btnInit: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,15 +39,18 @@ class StartupActivity : AppCompatActivity() {
         ivImage = findViewById(R.id.ivLogo)
         tvTitle = findViewById(R.id.tvTitle)
         tvCreators = findViewById(R.id.tvCreator)
-        btnInit = findViewById(R.id.btnInit)
 
         //Asignarles las animacion a los elementos
         ivImage.animation = topAnim
         tvTitle.animation = bottomAnim
         tvCreators.animation = bottomAnim
-        btnInit.setOnClickListener {
+
+        //Pasar a la actividad principal
+        Handler().postDelayed(Runnable {
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(intent)
             finish()
-        }
+        }, 2500)
 
     }
 }

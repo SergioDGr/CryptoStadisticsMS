@@ -9,4 +9,12 @@
     <string name="bitcoin">Bitcoin</string>
     <string name="ethereum">Ethereum</string>
     <string name="solana">Solana</string>
+    <string name="home">Home</string>
+    <string name="about_us">About Us</string>
+    <string name="mensajes">Message</string>
+    <string name="del_really_crypto">¿Desear eliminar la moneda seleccionada?</string>
+    <string name="del_crypto">Eliminar Moneda</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="active_notifications">Activar notificaciones:</string>
 </resources>
