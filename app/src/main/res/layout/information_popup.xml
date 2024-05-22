@@ -8,10 +8,18 @@
     android:background="@drawable/popup_background">
 
     <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Aplicacion informativa de crypto monedas, con funcion informativa de el posible movimiento de la moneda." />
+
+    <TextView
         android:id="@+id/tvContatUS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:layout_marginTop="80dp"
         android:text="@string/contant_us" />
 
     <LinearLayout
