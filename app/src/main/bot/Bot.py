@@ -93,7 +93,8 @@ def calculate_macd(data, short_window=12, long_window=26, signal_window=9):
     return data
 
 def notify_user(message):
-    print(f"Notificar al usuario: {message}")
+    #print(f"Notificar al usuario: {message}")
+    return message
 
 def trading_bot():
     #Comprar=1, Vender=2
