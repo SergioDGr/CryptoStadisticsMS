@@ -114,13 +114,14 @@ def trading_bot():
         print(f'Último precio: {price}, SMA: {sma:.2f}')
 
         if price > sma:
-            notify_user("¡Hora de comprar1!")
+            notify_user("¡Hora de comprar!")
             signal1 = 1
         elif price < sma:
-            notify_user("¡Hora de vender1!")
+            notify_user("¡Hora de vender!")
             signal1 = 2
 
     # Calcula el RSI y el MACD
+    '''
     data = calculate_rsi(data)
     data = calculate_macd(data)
 
@@ -149,4 +150,4 @@ def trading_bot():
         notify_user("¡Hora de comprar TODO!")
     if signal1 == 2 and signal2 == 2 and signal3 == 2:
         notify_user("¡Hora de vender TODO!")
-
+    '''
