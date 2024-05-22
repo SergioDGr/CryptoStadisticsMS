@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="Contant us:" />
+        android:text="@string/contant_us" />
 
     <LinearLayout
         android:id="@+id/llMail1"
@@ -20,18 +20,20 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/tvContatUS"
-        android:layout_marginStart="5dp">
+        android:layout_marginStart="5dp"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_email_24"/>
+            android:src="@drawable/baseline_email_24"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:text="sdgroppa@gmail.com"/>
+            android:text="@string/sdgroppa_gmail_com"/>
 
     </LinearLayout>
 
@@ -43,19 +45,20 @@
         android:orientation="horizontal"
         android:layout_below="@id/llMail1"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="5dp"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_email_24"/>
+            android:src="@drawable/baseline_email_24"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:text="marcovaz033@gmail.com"/>
+            android:text="@string/marcovaz033_gmail_com"/>
 
     </LinearLayout>
 

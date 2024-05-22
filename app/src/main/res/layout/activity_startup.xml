@@ -16,6 +16,7 @@
         android:gravity="center"
         tools:ignore="MissingConstraints">
 
+        <!-- Logo de la aplicacion -->
         <ImageView
             android:id="@+id/ivLogo"
             android:layout_width="wrap_content"
@@ -23,6 +24,7 @@
             android:src="@drawable/logo"
             tools:ignore="ContentDescription,MissingConstraints" />
 
+        <!-- Titulo de la aplicacion -->
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
@@ -40,6 +42,7 @@
 
     </LinearLayout>
 
+    <!-- Autores -->
     <TextView
         android:id="@+id/tvCreator"
         android:layout_width="match_parent"

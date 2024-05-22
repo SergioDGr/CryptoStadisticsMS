@@ -10,7 +10,7 @@
     <string name="ethereum">Ethereum</string>
     <string name="solana">Solana</string>
     <string name="home">Home</string>
-    <string name="about_us">About Us</string>
+    <string name="about_us">Information</string>
     <string name="mensajes">Message</string>
     <string name="del_really_crypto">¿Desear eliminar la moneda seleccionada?</string>
     <string name="del_crypto">Eliminar Moneda</string>
@@ -22,4 +22,8 @@
     <string name="exit">Exit</string>
     <string name="message">Message</string>
     <string name="no_notification">No hay ninguna noticicacion</string>
+    <string name="contant_us">Contant us:</string>
+    <string name="sdgroppa_gmail_com">sdgroppa@gmail.com</string>
+    <string name="marcovaz033_gmail_com">marcovaz033@gmail.com</string>
+    <string name="add_notification">Informacion</string>
 </resources>

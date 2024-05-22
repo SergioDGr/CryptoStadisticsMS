@@ -3,13 +3,15 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
+    <!-- Fondo -->
     <RelativeLayout
         android:id="@+id/rlCrypto"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:elevation="4dp"
         android:layout_margin="10dp">
-
+        <!-- Imagen de la cryptomoneda -->
         <ImageView
             android:id="@+id/ivImage"
             android:layout_width="60dp"
@@ -20,6 +22,7 @@
 
     </RelativeLayout>
 
+    <!-- Nombre de la cryptomoneda -->
     <TextView
         android:id="@+id/tvName"
         android:layout_width="match_parent"

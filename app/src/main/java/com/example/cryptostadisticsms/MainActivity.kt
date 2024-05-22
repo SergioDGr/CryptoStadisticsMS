@@ -36,9 +36,6 @@ import com.google.android.material.navigation.NavigationView
  */
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private val channelID = "channelID"
-    private val channelName = "channelName"
-
     private lateinit var binding: ActivityMainBinding
 
     @SuppressLint("MissingPermission", "ResourceType")
@@ -52,14 +49,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Pedir permisos para la notificacion
         askForNotificationPermission()
 
-        //Inicializar Python
-        if (! Python.isStarted()) {
-            Python.start( AndroidPlatform(this));
-        }
-
-        val py = Python.getInstance()
-        //val module = py.getModule("Bot")
-
         //Inicializa el menu
         initMenu()
         //Inicializa el fragment inicial, HOME
@@ -68,44 +57,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 HomeFragment()
             ).commit()
         }
-
-        /*val fact = module["trading_bot"]
-        fact?.call()*/
-
-        //val btnNewNotification = findViewById<Button>(R.id.btn_newNotification)
-        //rlBitcoin = findViewById(R.id.rlBitcoin);
-
-        //loadCryptos(py)
-        createNotificationChannel()
-
-        val notification: Notification = NotificationCompat.Builder(this, channelID).also {
-            it.setContentTitle("Titulo de notifiacion")
-            it.setContentText("Este es el contenido de la notificación")
-            it.setSmallIcon(R.drawable.ic_message)
-            it.setPriority(NotificationCompat.PRIORITY_HIGH)
-        }.build()
-
-        val notificationManager: NotificationManagerCompat = NotificationManagerCompat.from(this)
-
-        /*btnNewNotification.setOnClickListener {
-            notificationManager.notify(notificationId, notification)
-        }*/
-
-        /*rlBitcoin.setOnClickListener {
-
-            val bitcoin = lstCryptos?.get(0)
-
-            intent = Intent(this@MainActivity, CryptoActivity::class.java)
-            intent.putExtra("Bitcoin", bitcoin)
-            startActivity(intent)
-        }*/
-
-
-
     }
 
     /**
-     * Pide permiso para las notificaciones al usuario
+     *
      */
     private fun askForNotificationPermission(){
         val permissionLauncher = registerForActivityResult(
@@ -141,23 +96,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     /**
-     * Crea el canal de notificacion
-     */
-    private fun createNotificationChannel() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            val importance = NotificationManager.IMPORTANCE_HIGH
-
-            val channel = NotificationChannel(channelID, channelName, importance).apply {
-                lightColor = Color.RED
-                enableLights(true)
-            }
-            val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-            manager.createNotificationChannel(channel)
-        }
-    }
-
-    /**
      *  Al selecciona uno de los elementos del menu muentra un contenido en concreto
      *  o termina la actividad.
      */
@@ -179,7 +117,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.navAboutUS -> { //Dialog de informacion
                 val mDialog = Dialog(this)
-                mDialog.setContentView(R.layout.aboutus_popup)
+                mDialog.setContentView(R.layout.information_popup)
                 mDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 mDialog.show()
             }

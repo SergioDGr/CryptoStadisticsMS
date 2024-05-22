@@ -5,12 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".fragments.NotificationFragment">
 
+    <!-- ListView donde estaran los notificaciones -->
     <ListView
         android:id="@+id/lvNotifications"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"/>
 
+    <!-- Cuando no hay ninguna notificacion -->
     <TextView
         android:id="@+id/tvNotNotification"
         android:layout_width="wrap_content"

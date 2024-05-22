@@ -13,12 +13,14 @@
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
+        <!-- Cabezera -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="MissingConstraints"
             android:padding="15dp">
 
+            <!-- Imagen para volver atras-->
             <ImageView
                 android:id="@+id/ivGoBack"
                 android:layout_width="40dp"
@@ -27,6 +29,7 @@
                 android:layout_centerVertical="true"
                 tools:ignore="ContentDescription" />
 
+            <!-- Nombre de la cryptomoneda -->
             <TextView
                 android:id="@+id/tvCrypto"
                 android:layout_width="match_parent"
@@ -34,16 +37,19 @@
                 android:layout_centerVertical="true"
                 android:layout_marginHorizontal="60dp"
                 android:padding="5dp"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="28sp" />
 
         </RelativeLayout>
 
+        <!-- Separador -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/black" />
 
+        <!-- Contenido de la cryptomoneda -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -53,16 +59,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:text="@string/active_notifications"
+                android:layout_marginEnd="10dp"/>
 
-                android:text="@string/active_notifications"/>
-
-            <Switch
-                android:id="@+id/sNotificaciones"
+            <TextView
+                android:id="@+id/tvCryptoPrice"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                android:layout_height="match_parent"/>
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_newNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/add_notification" />
 
     </LinearLayout>
 

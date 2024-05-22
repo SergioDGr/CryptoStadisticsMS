@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
+        <!-- Cabezera -->
         <RelativeLayout
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
@@ -30,6 +30,7 @@
             tools:ignore="MissingConstraints"
             android:padding="15dp">
 
+            <!-- Imagen para desplegar el menu de navigacion -->
             <ImageView
                 android:id="@+id/ivNavBar"
                 android:layout_width="40dp"
@@ -38,6 +39,7 @@
                 android:layout_centerVertical="true"
                 tools:ignore="ContentDescription" />
 
+            <!-- Campo donde es pone el contenido a buscar -->
             <EditText
                 android:id="@+id/etBuscar"
                 android:layout_width="match_parent"
@@ -54,6 +56,7 @@
                 android:textSize="14sp"
                 tools:ignore="LabelFor,TextFields" />
 
+            <!-- Titulo para el fragment Notification -->
             <TextView
                 android:id="@+id/tvMessageTitle"
                 android:layout_width="match_parent"
@@ -68,6 +71,7 @@
                 android:text="@string/message"
                 android:visibility="gone"/>
 
+            <!-- Buton/Imagen que gestiona la busqueda de la cryptomoneda -->
             <ImageView
                 android:id="@+id/ivAddCrypro"
                 android:layout_width="40dp"
@@ -80,21 +84,17 @@
 
         </RelativeLayout>
 
+        <!-- Separador -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/black" />
 
+        <!-- Contenido a visualizar -->
         <FrameLayout
             android:id="@+id/flContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
-        <!--<Button
-            android:id="@+id/btn_newNotification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Crear Notificacion" />-->
 
     </LinearLayout>
 
