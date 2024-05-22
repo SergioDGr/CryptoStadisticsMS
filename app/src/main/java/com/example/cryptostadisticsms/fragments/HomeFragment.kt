@@ -24,6 +24,11 @@ class HomeFragment : Fragment() {
     private var lstCryptoItems: ArrayList<Crypto> = ArrayList()
     private lateinit var adapter: CryptoAdapter
     private lateinit var gvCryptos: GridView
+    private val criptomonedas = arrayOf(
+        "cardano", "binance coin", "xrp", "polkadot", "dogecoin", "avalanche", "chainlink",
+        "litecoin", "algorand", "stellar", "vechain", "tezos",
+        "cosmos", "filecoin", "theta", "tron", "monero"
+    )
 
     /**
      * Cuando se crea la vista
@@ -107,7 +112,13 @@ class HomeFragment : Fragment() {
      * Metodo que se utiliza para la busqueda de la cryptomoneda
      */
     private fun searchCrypto(str: String): Boolean{
-        return str.lowercase() == "dogcoin";
+        // Recorre el array y comprueba si contiene el nombre buscado
+        for (nombre in criptomonedas) {
+            if (nombre == str.lowercase()) {
+                return true
+            }
+        }
+        return false
     }
 
     /**
