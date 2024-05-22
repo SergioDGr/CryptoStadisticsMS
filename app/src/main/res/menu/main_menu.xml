@@ -8,8 +8,15 @@
         <item android:id="@+id/navMessages" android:title="@string/mensajes"
             android:icon="@drawable/ic_message" />
         <item android:id="@+id/navAboutUS" android:title="@string/about_us"
-            android:icon="@drawable/about_us"/>
+            android:icon="@drawable/about_us" android:checkable="false"/>
 
     </group>
+
+    <item  android:title="" >
+        <menu>
+            <item android:id="@+id/navExit" android:title="@string/exit"
+                android:icon="@drawable/baseline_exit_to_app_24"/>
+        </menu>
+    </item>
 
 </menu>

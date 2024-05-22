@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -13,6 +12,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
+/**
+ * Actividad que se muestra al iniciar la aplicacion y que representaria una portada para
+ * la aplicacion
+ */
 class StartupActivity : AppCompatActivity() {
 
     private lateinit var topAnim: Animation
@@ -21,6 +24,10 @@ class StartupActivity : AppCompatActivity() {
     private lateinit var tvTitle: TextView
     private lateinit var tvCreators: TextView
 
+    /**
+     * Cuando se crea la vista, se le asigna a los elementos unas animacion y un temporizador
+     * para iniciar la MainActivity
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

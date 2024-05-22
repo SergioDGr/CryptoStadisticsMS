@@ -54,6 +54,20 @@
                 android:textSize="14sp"
                 tools:ignore="LabelFor,TextFields" />
 
+            <TextView
+                android:id="@+id/tvMessageTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="60dp"
+                android:minHeight="48dp"
+                android:padding="5dp"
+                android:textSize="28sp"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:text="@string/message"
+                android:visibility="gone"/>
+
             <ImageView
                 android:id="@+id/ivAddCrypro"
                 android:layout_width="40dp"
@@ -71,20 +85,16 @@
             android:layout_height="1dp"
             android:background="@android:color/black" />
 
-        <GridView
-            android:id="@+id/gvCryptos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            tools:listitem="@layout/crypto_list_item"
-            android:numColumns="3"
-            tools:ignore="NestedScrolling" />
+        <FrameLayout
+            android:id="@+id/flContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-        <Button
+        <!--<Button
             android:id="@+id/btn_newNotification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Crear Notificacion" />
+            android:text="Crear Notificacion" />-->
 
     </LinearLayout>
 
