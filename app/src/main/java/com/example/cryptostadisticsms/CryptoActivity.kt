@@ -31,7 +31,8 @@ class CryptoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCryptoBinding
 
     /**
-     *
+     * Cuando se crea la vista se define lo que se visualiza cada campo de la crypto y
+     * se le define un boton para que notifica si es momento para comprar o vender.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,9 +52,7 @@ class CryptoActivity : AppCompatActivity() {
 
         val py = Python.getInstance()
         val module = py.getModule("Bot")
-
         val fact = module["trading_bot"]
-        val msg = fact?.call()
 
         notificationManager = NotificationManagerCompat.from(this)
         createNotificationChannel()
@@ -62,7 +61,7 @@ class CryptoActivity : AppCompatActivity() {
                     Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                 return@setOnClickListener
             }
-
+            val msg = fact?.call()
             val notification: Notification = NotificationCompat.Builder(this, channelID).also {
                 it.setContentTitle("Siguiente movimiento")
                 it.setContentText(msg.toString())

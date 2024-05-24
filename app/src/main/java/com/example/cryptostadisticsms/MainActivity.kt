@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         //Inicializa el menu
         initMenu()
+
         //Inicializa el fragment inicial, HOME
         if(savedInstanceState == null){
             supportFragmentManager.beginTransaction().replace(R.id.flContainer,
@@ -60,7 +61,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     /**
-     *
+     * Pedir al usuario el permiso de notificacion
      */
     private fun askForNotificationPermission(){
         val permissionLauncher = registerForActivityResult(
